@@ -27,7 +27,7 @@ public class WelcomeController {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         } catch (Exception e) {
-            throw new UsernameNotFoundException("User" + authRequest.getUsername() + " does not exist.");
+            throw new UsernameNotFoundException("User " + authRequest.getUsername() + " does not exist.");
         }
         return jwtUtil.generateToken(authRequest.getUsername());
     }

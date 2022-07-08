@@ -14,19 +14,14 @@ import java.util.stream.Stream;
 
 @SpringBootApplication
 public class JwtApplication {
-
 	@Autowired
 	private UserRepository userRepository;
-	private final PasswordEncoder passwordEncoder;
-
-	public JwtApplication(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
-	}
-
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@PostConstruct
 		public void initUsers() {
 			List<User> users  = Stream.of(
-					new User(1 ,"osagie","password", "osagieabel@icloud.com"),
+					new User(1,"osagie", passwordEncoder.encode("password"), "osagieabel@icloud.com"),
 					new User(2 ,"user1", passwordEncoder.encode("pwd1"), "user1@icloud.com"),
 					new User(3 ,"user2", passwordEncoder.encode("pwd2"), "user2@icloud.com"),
 					new User(4 ,"user3", passwordEncoder.encode("pwd3"), "user3@icloud.com"),
